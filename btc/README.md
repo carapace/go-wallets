@@ -1,6 +1,8 @@
 # Bitcoin SPV Wallet
 
+
 ## Transaction Format
+General format of a Bitcoin transaction
 ```
 type MsgTx struct {
 	Version  int32
@@ -15,7 +17,7 @@ Represents the Transaction data format version.
 * Version 2: Support for OP CHECKSEQUENCEVERIFY as specified in [BIP-68]
 
 ### TxIn
-An array of transactions 
+An array of previous transactions, consisting of:
 ```
 type TxIn struct {
 
@@ -26,7 +28,8 @@ type TxIn struct {
 }
 ```
 #### PreviousOutPoint
-
+Previous Transaction hash, doubled SHA256-hashed of a (previous) to-be-used transaction.
+Previous Txout-index, non negative integer indexing an output of the to-be-used transaction.
 ```
 type OutPoint struct {
 	Hash  string `json:"hash"`
@@ -34,22 +37,28 @@ type OutPoint struct {
 }
 ```
 #### Witness
+A list of witnesses, 1 for each input.
 ```
 type TxWitness [][]byte
 ```
 #### Sequence
+A number intended to allow unconfirmed time-locked transactions to be updated before being finalized
 
 ### TxOut
+An array of outgoing transaction, consisting of:
 ```
 type TxOut struct {
 	Value    int64
 	PkScript []byte
 }
 ```
+#### Value
+Non negative integer giving the number of Satoshis to be transfered.
+#### PkScript
+A script is essentially a list of instructions recorded with each transaction that describe how the next person wanting to spend the Bitcoins being transferred can gain access to them.
+
 ### LockTime
 Set a minimum block height or Unix time that this transaction can be included in.
-
-
 
 ## Authors
 rpks
