@@ -45,7 +45,7 @@ type TxWitness [][]byte
 A number intended to allow unconfirmed time-locked transactions to be updated before being finalized
 
 ### TxOut
-An array of outgoing transaction, consisting of:
+An array of outgoing transactions, consisting of:
 ```
 type TxOut struct {
 	Value    int64
