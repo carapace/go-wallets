@@ -3,7 +3,7 @@
 
 ## Transaction Format
 General format of a Bitcoin transaction
-```
+```go
 type MsgTx struct {
 	Version  int32
 	TxIn     []*TxIn
@@ -18,7 +18,7 @@ Represents the Transaction data format version.
 
 ### TxIn
 An array of previous transactions, consisting of:
-```
+```go
 type TxIn struct {
 
 	PreviousOutPoint OutPoint
@@ -30,7 +30,7 @@ type TxIn struct {
 #### PreviousOutPoint
 Previous Transaction hash, doubled SHA256-hashed of a (previous) to-be-used transaction.
 Previous Txout-index, non negative integer indexing an output of the to-be-used transaction.
-```
+```go
 type OutPoint struct {
 	Hash  string `json:"hash"`
 	Index uint32 `json:"index"`
@@ -38,7 +38,7 @@ type OutPoint struct {
 ```
 #### Witness
 A list of witnesses, 1 for each input.
-```
+```go
 type TxWitness [][]byte
 ```
 #### Sequence
@@ -46,7 +46,7 @@ A number intended to allow unconfirmed time-locked transactions to be updated be
 
 ### TxOut
 An array of outgoing transactions, consisting of:
-```
+```go
 type TxOut struct {
 	Value    int64
 	PkScript []byte
