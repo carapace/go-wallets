@@ -1,7 +1,23 @@
 # Bitcoin SPV Wallet
-This package provides a SPV wallet with the ability to create transactions offline, by having a local database of the UTXOs. The package is written in Go and is  inspired by [Bitcoin in Go](https://github.com/btcsuite).
+This package provides a SPV wallet with the ability to create transactions partially offline, by having a local database of the UTXOs. The package is written in Go and is  inspired by [Bitcoin in Go](https://github.com/btcsuite).
 
-# UTXO Retrieval
+## Supported functions
+* getBalance: computes balance of adress
+* sendTransaction: Creates a valid transaction and sends it to the desired node
+* makeTransaction: Creates a signed transaction
+* makeRawTransaction: Creates a valid but unsigned transaction
+* updateUTXOdb: Updates the local UTXO database with data from desired or default node
+
+## Process sendTransaction
+* User enters the required parameters:  destination address,  value, PKscript (optional), desired node (optional), locktime (optional)
+* UTXOs retrieved from desired node or, if the input was left empty, the default node.
+* Balance is calculated and checked if total transaction value does not exceed balance.
+* Raw transaction is created
+* Transaction is signed
+* Transaction is send to the desired or default node
+
+
+## UTXO Retrieval
 The way the UTXOs are retrieved depends on the implentation of the node:
 * [Btcd](https://github.com/btcsuite/btcd) nodes provides their own [RPC client](https://github.com/btcsuite/btcd/tree/master/rpcclient/examples/btcwalletwebsockets) which allows the client to connect to a websocket to recieve new UTXOs.
 * [Bitcoin Core](https://bitcoin.org/en/bitcoin-core/) nodes do not provide any support for this by default and thus [Blockchain Explorer](https://www.blockchain.com/explorer) is used to retrieve the UTXOs by using the REST API-call  
