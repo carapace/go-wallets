@@ -12,7 +12,7 @@ This package provides a SPV wallet with the ability to create transactions parti
 * User enters the required parameters:  destination address,  value, PKscript (optional), desired node (optional), locktime (optional)
 * UTXOs retrieved from desired node or, if the input was left empty, the default node.
 * Balance is calculated and checked if total transaction value does not exceed balance.
-* Raw transaction is created
+* Raw transaction is created, if no PKscript was given, then one from the PKscriptpool will be randomly selected
 * Transaction is signed
 * Transaction is send to the desired or default node
 
