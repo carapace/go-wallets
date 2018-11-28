@@ -9,7 +9,7 @@ This package provides a SPV wallet with the ability to create transactions parti
 * updateUTXOdb: Updates the local UTXO database with data from desired or default node
 
 ## Process sendTransaction
-* User enters the required parameters:  destination address,  value, PKscript (optional), desired node (optional), locktime (optional)
+* User enters the required parameters:  destination address,  value, version, sequence (optional), PKscript (optional), desired node (optional), locktime (optional)
 * UTXOs retrieved from desired node or, if the input was left empty, the default node.
 * Balance is calculated and checked if total transaction value does not exceed balance.
 * Raw transaction is created, if no PKscript was given, then one from the PKscriptpool will be randomly selected
