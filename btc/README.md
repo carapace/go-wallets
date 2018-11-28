@@ -1,6 +1,13 @@
 # Bitcoin SPV Wallet
+This package provides a SPV wallet with the ability to create transactions offline, by having a local database of the UTXOs. The package is written in Go and is  inspired by [Bitcoin in Go](https://github.com/btcsuite).
 
-
+# UTXO Retrieval
+The way the UTXOs are retrieved depends on the implentation of the node:
+* [Btcd](https://github.com/btcsuite/btcd) nodes provides their own [RPC client](https://github.com/btcsuite/btcd/tree/master/rpcclient/examples/btcwalletwebsockets) which allows the client to connect to a websocket to recieve new UTXOs.
+* [Bitcoin Core](https://bitcoin.org/en/bitcoin-core/) nodes do not provide any support for this by default and thus [Blockchain Explorer](https://www.blockchain.com/explorer) is used to retrieve the UTXOs by using the REST API-call  
+```
+/api/addr/[:addr]/utxo[?noCache=1]
+```
 ## Transaction Format
 General format of a Bitcoin transaction
 ```go
@@ -54,6 +61,7 @@ type TxOut struct {
 ```
 #### Value
 Non negative integer giving the number of Satoshis to be transfered.
+
 #### PkScript
 A script is essentially a list of instructions recorded with each transaction that describe how the next person wanting to spend the Bitcoins being transferred can gain access to them.
 
