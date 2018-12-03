@@ -4,7 +4,7 @@ This package provides a SPV wallet with the ability to create transactions parti
 ## Supported nodes
 * [Bitcoin Core](https://bitcoin.org/en/bitcoin-core/)
 * [Btcd](https://github.com/btcsuite/btcd)
-* [Bitcore] (https://bitcore.io/)
+* [Bitcore](https://bitcore.io/)
 
 ## Supported functions
 * getBalance: computes balance of adress
