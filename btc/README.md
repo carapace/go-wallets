@@ -1,4 +1,11 @@
-# Bitcoin SPV Wallet
+type Input struct{
+	TXID 				string		// 32 	bytes
+	Vout 				uint		// 4	bytes
+	ScriptSigLength 	uint		// 1-9	bytes
+	ScriptSig 			string		// verify script
+	Sequence_no			uint		// 4 	bytes, standard 0xFFFFFFFF
+
+}# Bitcoin SPV Wallet
 This package provides a SPV wallet with the ability to create transactions partially offline, by having a local database of the UTXOs. The package is written in Go and is  inspired by [Bitcoin in Go](https://github.com/btcsuite).
 
 ## Supported nodes
@@ -64,15 +71,7 @@ type Input struct{
 
 }
 ```
-##### PreviousOutPoint
-Previous Transaction hash, doubled SHA256-hashed of a (previous) to-be-used transaction.
-Previous Txout-index, non negative integer indexing an output of the to-be-used transaction.
-```go
-type OutPoint struct {
-	Hash  string `json:"hash"`
-	Index uint32 `json:"index"`
-}
-```
+
 ##### Witness
 A list of witnesses, 1 for each input.
 ```go
