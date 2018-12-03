@@ -1,11 +1,4 @@
-type Input struct{
-	TXID 				string		// 32 	bytes
-	Vout 				uint		// 4	bytes
-	ScriptSigLength 	uint		// 1-9	bytes
-	ScriptSig 			string		// verify script
-	Sequence_no			uint		// 4 	bytes, standard 0xFFFFFFFF
-
-}# Bitcoin SPV Wallet
+# Bitcoin SPV Wallet
 This package provides a SPV wallet with the ability to create transactions partially offline, by having a local database of the UTXOs. The package is written in Go and is  inspired by [Bitcoin in Go](https://github.com/btcsuite).
 
 ## Supported nodes
