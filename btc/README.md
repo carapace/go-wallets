@@ -9,18 +9,19 @@ This package provides a SPV wallet with the ability to create transactions parti
 * updateUTXOdb: Updates the local UTXO database with data from desired or default node
 
 ## Process sendTransaction
-* User enters the required parameters:  destination address,  value, version, sequence (optional), PKscript (optional), desired node (optional), locktime (optional)
+* User enters the required parameters:  destination address,  value, version, sequence (optional), PKscript (optional), desired node (optional), rpc credentials(optional), locktime (optional)
 * UTXOs retrieved from desired node or, if the input was left empty, the default node.
 * Balance is calculated and checked if total transaction value does not exceed balance.
 * Raw transaction is created, if no PKscript was given, then one from the PKscriptpool will be randomly selected
 * Transaction is signed
+* If rpc credentials are given, then the transaction will be send to the desired node, if not then it will be send using API calls from [Blockchain Explorer](https://www.blockchain.com/explorer).
 * Transaction is send to the desired or default node
 
 
 ### UTXO Retrieval
 The way the UTXOs are retrieved depends on the implentation of the node:
 * [Btcd](https://github.com/btcsuite/btcd) nodes provides their own [RPC client](https://github.com/btcsuite/btcd/tree/master/rpcclient/examples/btcwalletwebsockets) which allows the client to connect to a websocket to recieve new UTXOs.
-* [Bitcoin Core](https://bitcoin.org/en/bitcoin-core/) nodes do not provide any support for this by default and thus [Blockchain Explorer](https://www.blockchain.com/explorer) is used to retrieve the UTXOs by using the REST API-call  
+* [Bitcoin Core](https://bitcoin.org/en/bitcoin-core/) nodes do not provide any support for this by default and thus [Blockchain Explorer](https://www.blockchain.com/explorer) is used to retrieve the UTXOs by using the REST API-call.
 ```
 /api/addr/[:addr]/utxo[?noCache=1]
 ```
